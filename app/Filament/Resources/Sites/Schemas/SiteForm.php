@@ -68,14 +68,12 @@ class SiteForm
                                 TextInput::make('slack_webhook')
                                     ->label('Slack Webhook URL')
                                     ->url()
-                                    ->prefix('https://')
-                                    ->placeholder('hooks.slack.com/services/...')
+                                    ->placeholder('https://hooks.slack.com/services/...')
                                     ->helperText('Get webhook URL from Slack settings'),
                                 TextInput::make('discord_webhook')
                                     ->label('Discord Webhook URL')
                                     ->url()
-                                    ->prefix('https://')
-                                    ->placeholder('discord.com/api/webhooks/...')
+                                    ->placeholder('https://discord.com/api/webhooks/...')
                                     ->helperText('Get webhook URL from Discord channel settings'),
                             ]),
                     ]),
@@ -97,8 +95,7 @@ class SiteForm
                                 TextInput::make('check_url')
                                     ->label('Check URL')
                                     ->url()
-                                    ->prefix('https://')
-                                    ->placeholder(fn($get) => $get('url') ?: 'example.com/status')
+                                    ->placeholder(fn($get) => $get('url') ?: 'https://example.com/status')
                                     ->helperText('Leave empty to use the main site URL. You can specify a custom endpoint like /status or /up'),
                             ])
                             ->visible(fn($get) => $get('enable_uptime_check')),
