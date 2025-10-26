@@ -92,7 +92,28 @@ class SitesTable
                                                 <pre class="bg-gray-950 text-white p-4 rounded-lg overflow-x-auto"><code>LARACHECK_KEY=' . $record->key . '
 LARACHECK_URL=' . url('/api') . '</code></pre>
 
-                                                <h3>4. Done! 🎉</h3>
+                                                <h3>4. Enable exception tracking in bootstrap/app.php</h3>
+                                                <p>Add exception tracking to your application configuration:</p>
+                                                <pre class="bg-gray-950 text-white p-4 rounded-lg overflow-x-auto"><code>use Illuminate\Foundation\Application;
+use Illuminate\Foundation\Configuration\Exceptions;
+use Illuminate\Foundation\Configuration\Middleware;
+
+return Application::configure(basePath: dirname(__DIR__))
+    -&gt;withRouting(
+        web: __DIR__.\'/../routes/web.php\',
+        commands: __DIR__.\'/../routes/console.php\',
+        health: \'/up\',
+    )
+    -&gt;withMiddleware(function (Middleware $middleware): void {
+        //
+    })
+    -&gt;withExceptions(function (Exceptions $exceptions): void {
+        // 👇 Add this line
+        app(\'laracheck\')-&gt;track($exceptions);
+    })
+    -&gt;create();</code></pre>
+
+                                                <h3>5. Done! 🎉</h3>
                                                 <p>Exceptions will now be automatically tracked and sent to Laracheck.</p>
 
                                                 <p class="text-sm text-gray-600 dark:text-gray-400 mt-4">
